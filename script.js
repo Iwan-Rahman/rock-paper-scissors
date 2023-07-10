@@ -20,3 +20,18 @@ function getComputerChoice(){
 
     return choice;
 }
+
+function getPlayerChoice(){
+    let choice = prompt("Make your move!");
+    
+    choice = choice.trim();
+    choice = choice.toLowerCase();
+
+    if(choice == "rock" || choice == "paper" || choice == "scissors"){
+        choice = choice[0].toUpperCase() + choice.slice(1);   
+    }else{
+        choice = getPlayerChoice();
+    }
+
+    return choice;
+}
