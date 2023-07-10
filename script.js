@@ -35,3 +35,20 @@ function getPlayerChoice(){
 
     return choice;
 }
+
+function playRound(computerSelection,playerSelection){
+    let result;
+    
+    if((playerSelection == "Rock" && computerSelection == "Scissors")
+        || (playerSelection == "Paper" && computerSelection == "Rock")
+        || (playerSelection == "Scissors" && computerSelection == "Paper")
+    ){
+        result = "You win";
+    }else if(playerSelection == computerSelection){
+        result = "It's a tie";
+    }else{
+        result = "You lose";
+    }
+
+    return result;
+}
