@@ -77,3 +77,4 @@ function playGame(rounds = 5){
         console.log("You lose the game!");
     }
 }
+
