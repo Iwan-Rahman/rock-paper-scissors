@@ -36,7 +36,7 @@ function getPlayerChoice(choice){
     return choice;
 }
 
-const score = document.querySelector(".score div");
+const score = document.querySelector(".score-display");
 const gameResult = document.querySelector(".result");
 function updateScore(){
     score.textContent = playerScore + " : " + compScore;
@@ -55,6 +55,19 @@ function updateScreen(computerSelection,playerSelection){
     compDisplayImg.setAttribute('src','./img/' + compImg + '.png');
     compDisplayImg.setAttribute('alt',compImg);
 
+}
+
+function resetGame(){
+    playerDisplayImg.removeAttribute('src');
+    playerDisplayImg.removeAttribute('alt');
+
+    compDisplayImg.removeAttribute('src');
+    compDisplayImg.removeAttribute('alt');
+
+    playerScore = 0;
+    compScore = 0;
+    updateScore();
+    gameResult.textContent = "";
 }
 
 function playRound(computerSelection,playerSelection){
