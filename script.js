@@ -1,4 +1,5 @@
-console.log("Hello World");
+let playerScore = 0;
+let compScore = 0;
 
 function getComputerChoice(){
     //Random number from 1-3 where,
@@ -35,6 +36,11 @@ function getPlayerChoice(choice){
     return choice;
 }
 
+const score = document.querySelector(".score div");
+function updateScore(){
+    score.textContent = playerScore + " : " + compScore;
+}
+
 function playRound(computerSelection,playerSelection){
     let result;
     
@@ -43,12 +49,15 @@ function playRound(computerSelection,playerSelection){
         || (playerSelection == "Scissors" && computerSelection == "Paper")
     ){
         result = "You win";
+        playerScore++;
     }else if(playerSelection == computerSelection){
         result = "It's a tie";
     }else{
         result = "You lose";
+        compScore++;
     }
 
+    updateScore();
     return result;
 }
 
@@ -59,4 +68,4 @@ const scissors = document.querySelectorAll(".player-btn")[2];
 
 rock.addEventListener("click",() => console.log(playRound(getComputerChoice(),"Rock")));
 paper.addEventListener("click",() => console.log(playRound(getComputerChoice(),"Paper")));
-scissors.addEventListener("click", () => console.log(playRound(getComputerChoice,"Scissors")));
+scissors.addEventListener("click", () => console.log(playRound(getComputerChoice(),"Scissors")));
