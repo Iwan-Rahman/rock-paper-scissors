@@ -37,8 +37,10 @@ function getPlayerChoice(choice){
 }
 
 const score = document.querySelector(".score div");
+const gameResult = document.querySelector(".result");
 function updateScore(){
     score.textContent = playerScore + " : " + compScore;
+
 }
 
 function playRound(computerSelection,playerSelection){
@@ -65,7 +67,20 @@ function playRound(computerSelection,playerSelection){
 const rock = document.querySelectorAll(".player-btn")[0];
 const paper = document.querySelectorAll(".player-btn")[1];
 const scissors = document.querySelectorAll(".player-btn")[2];
+let playerDisplayImg = document.querySelector('.player-display img');
 
-rock.addEventListener("click",() => console.log(playRound(getComputerChoice(),"Rock")));
-paper.addEventListener("click",() => console.log(playRound(getComputerChoice(),"Paper")));
-scissors.addEventListener("click", () => console.log(playRound(getComputerChoice(),"Scissors")));
+rock.addEventListener("click",() => {
+    playerDisplayImg.setAttribute('src','./img/rock.png');
+    playerDisplayImg.setAttribute('alt','rock');
+    gameResult.textContent = playRound(getComputerChoice(),"Rock")   
+});
+paper.addEventListener("click",() => {
+    playerDisplayImg.setAttribute('src','./img/paper.png');
+    playerDisplayImg.setAttribute('alt','paper');
+    gameResult.textContent = playRound(getComputerChoice(),"Paper")   
+});
+scissors.addEventListener("click", () => {
+    playerDisplayImg.setAttribute('src','./img/scissors.png');
+    playerDisplayImg.setAttribute('alt','scissors');
+    gameResult.textContent = playRound(getComputerChoice(),"Scissors")
+});
