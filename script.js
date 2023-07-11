@@ -21,8 +21,7 @@ function getComputerChoice(){
     return choice;
 }
 
-function getPlayerChoice(){
-    let choice = prompt("Make your move!");
+function getPlayerChoice(choice){
     
     choice = choice.trim();
     choice = choice.toLowerCase();
@@ -78,3 +77,11 @@ function playGame(rounds = 5){
     }
 }
 
+//Make buttons
+const rock = document.querySelectorAll(".player-btn")[0];
+const paper = document.querySelectorAll(".player-btn")[1];
+const scissors = document.querySelectorAll(".player-btn")[2];
+
+rock.addEventListener("click",() => console.log(playRound(getComputerChoice(),"Rock")));
+paper.addEventListener("click",() => console.log(playRound(getComputerChoice(),"Paper")));
+scissors.addEventListener("click", () => console.log(playRound(getComputerChoice,"Scissors")));

@@ -10,20 +10,36 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
+h1{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
 .main {
+    flex: 2;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
 }
-
+.score div {
+    height: 250px;
+    width: 250px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
 .player-container,.comp-container {
     display: flex;
 }
 
-.player-display,.comp-display {
+.player-display,.comp-display{
     border: 1px solid black;
     box-sizing: border-box;
     flex: 2 2 500px;
@@ -47,4 +63,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    user-select: none;
+    cursor: pointer;
 }
