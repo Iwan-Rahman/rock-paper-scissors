@@ -45,6 +45,7 @@ h2 {
     height: auto;
     font-weight: 900;
     cursor: pointer;
+    padding: 0px;
 }
 
 .main {
@@ -67,6 +68,8 @@ h2 {
 .result {
     flex: 1;
     align-items: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .player-container,.comp-container {

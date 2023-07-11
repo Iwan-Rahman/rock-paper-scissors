@@ -40,7 +40,6 @@ const score = document.querySelector(".score-display");
 const gameResult = document.querySelector(".result");
 function updateScore(){
     score.textContent = playerScore + " : " + compScore;
-
 }
 
 function updateScreen(computerSelection,playerSelection){
@@ -72,7 +71,11 @@ function resetGame(){
 
 function playRound(computerSelection,playerSelection){
     let result;
-    
+    //if the game is already won, reset the game.
+    if(playerScore == winScore || compScore == winScore){
+        resetGame();
+    }
+
     if((playerSelection == "Rock" && computerSelection == "Scissors")
         || (playerSelection == "Paper" && computerSelection == "Rock")
         || (playerSelection == "Scissors" && computerSelection == "Paper")
@@ -87,6 +90,13 @@ function playRound(computerSelection,playerSelection){
     }
     updateScreen(computerSelection,playerSelection);
     updateScore();
+
+    if(playerScore == winScore){
+        result = "Congratulations! You won the game.";
+    }else if(compScore == winScore){
+        result = "You lost. The game is over, go home.";
+    }
+
     return result;
 }
 
@@ -94,6 +104,15 @@ function compBehavior(rock,paper,scissors){
     rockPriority = rock;
     paperPriority = paper;
     scissorsPriority = scissors;
+
+    //reset game
+    resetGame();
+}
+
+function setWinScore(){
+    do{
+        winScore = +prompt("Set the winning score: ");
+    }while(winScore <= 0 || typeof winScore != "number");
 }
 
 //Make buttons
@@ -106,17 +125,25 @@ const compDisplayImg = document.querySelector('.comp-display img');
 const simple = document.querySelectorAll(".comp-btn")[0];
 const normal = document.querySelectorAll(".comp-btn")[1];
 const custom = document.querySelectorAll(".comp-btn")[2];
-
+const compName = document.querySelector(".comp h2");
 let rockPriority = 1;
 let paperPriority = 1;
 let scissorsPriority = 1;
+
+let winScore = 5;
 
 rock.addEventListener("click",() => gameResult.textContent = playRound(getComputerChoice(),"Rock"));
 paper.addEventListener("click",() => gameResult.textContent = playRound(getComputerChoice(),"Paper"));
 scissors.addEventListener("click", () => gameResult.textContent = playRound(getComputerChoice(),"Scissors"));
 
-simple.addEventListener("click", () => compBehavior(8,1,1));
-normal.addEventListener("click", () => compBehavior(1,1,1));
+simple.addEventListener("click", () => {
+    compBehavior(8,1,1)
+    compName.textContent = "Computer (Simple)";
+});
+normal.addEventListener("click", () => {
+    compBehavior(1,1,1)
+    compName.textContent = "Computer (Normal)";
+});
 custom.addEventListener("click",() => {
     let rock = 1;
     let paper = 1;
@@ -130,5 +157,7 @@ custom.addEventListener("click",() => {
     do{
         scissors = +prompt("How ofthen should the AI play scissors. Set a positive integer from 1 - 10")
     }while(!(scissors >= 1 && scissors <= 10) && !(typeof scissors != 'number'));
+    
     compBehavior(rock,paper,scissors);
+    compName.textContent = "Computer (Custom)";
 })
