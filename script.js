@@ -43,6 +43,19 @@ function updateScore(){
 
 }
 
+function updateScreen(computerSelection,playerSelection){
+    //all fine names are just lower case of the selection string values
+    let playerImg = playerSelection.toLowerCase();
+    let compImg = computerSelection.toLowerCase();
+
+    playerDisplayImg.setAttribute('src','./img/'+ playerImg +'.png');
+    playerDisplayImg.setAttribute('alt',playerImg);
+
+    compDisplayImg.setAttribute('src','./img/' + compImg + '.png');
+    compDisplayImg.setAttribute('alt',compImg);
+
+}
+
 function playRound(computerSelection,playerSelection){
     let result;
     
@@ -58,7 +71,7 @@ function playRound(computerSelection,playerSelection){
         result = "You lose";
         compScore++;
     }
-
+    updateScreen(computerSelection,playerSelection);
     updateScore();
     return result;
 }
@@ -67,20 +80,9 @@ function playRound(computerSelection,playerSelection){
 const rock = document.querySelectorAll(".player-btn")[0];
 const paper = document.querySelectorAll(".player-btn")[1];
 const scissors = document.querySelectorAll(".player-btn")[2];
-let playerDisplayImg = document.querySelector('.player-display img');
+const playerDisplayImg = document.querySelector('.player-display img');
+const compDisplayImg = document.querySelector('.comp-display img');
 
-rock.addEventListener("click",() => {
-    playerDisplayImg.setAttribute('src','./img/rock.png');
-    playerDisplayImg.setAttribute('alt','rock');
-    gameResult.textContent = playRound(getComputerChoice(),"Rock")   
-});
-paper.addEventListener("click",() => {
-    playerDisplayImg.setAttribute('src','./img/paper.png');
-    playerDisplayImg.setAttribute('alt','paper');
-    gameResult.textContent = playRound(getComputerChoice(),"Paper")   
-});
-scissors.addEventListener("click", () => {
-    playerDisplayImg.setAttribute('src','./img/scissors.png');
-    playerDisplayImg.setAttribute('alt','scissors');
-    gameResult.textContent = playRound(getComputerChoice(),"Scissors")
-});
+rock.addEventListener("click",() => gameResult.textContent = playRound(getComputerChoice(),"Rock"));
+paper.addEventListener("click",() => gameResult.textContent = playRound(getComputerChoice(),"Paper"));
+scissors.addEventListener("click", () => gameResult.textContent = playRound(getComputerChoice(),"Scissors"));
